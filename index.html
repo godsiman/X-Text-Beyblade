@@ -13,6 +13,16 @@
 @media(max-width:420px){.shell{padding-inline:7px}.panel{padding:8px;border-radius:13px}.player-name{font-size:13px}.player-tag{font-size:9px}.editor-frame{margin:7px auto;max-width:155px}.tabs button{font-size:11px;padding:7px 1px}.write-field{font-size:16px;min-height:37px;padding:7px}.stat-grid{gap:3px;margin:9px 0}.stat{padding:5px 0}.stat span{font-size:10px}.stat b{font-size:14px}.tool{font-size:10px;padding:6px}.panel label.field-title{margin:9px 0 4px;font-size:11px}.hint{font-size:10px}.spin-group button{font-size:11px;padding:6px 2px}.header h1{font-size:25px}.desc{font-size:11px}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important}}
 
+/* v1.2: semantic powers and a broader NPC vocabulary */
+.ability-box{min-height:86px;margin:0 0 12px;padding:10px 11px;border-radius:11px;background:linear-gradient(130deg,#10253c,#17223b);border:1px solid #3c526a;line-height:1.5}
+.ability-box .ability-caption{display:block;font-size:10px;color:#96b2cc;font-weight:850;letter-spacing:.09em}
+.ability-box strong{display:block;margin-top:3px;font-size:14px;color:var(--accent)}
+.ability-box small{display:block;color:#c2d4e6;font-size:11px;margin-top:2px}
+.ability-box em{font-style:normal;font-size:10px;color:#e9c985}
+.skill-guide{margin-top:8px;display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.skill-guide span{border:1px solid #375372;border-radius:100px;background:#0b1a2b;padding:5px 9px;color:#c7deec;font-size:11px;font-weight:750}
+.ability-float{font-size:11px;font-weight:900}
+@media(max-width:420px){.ability-box{min-height:100px;padding:7px}.ability-box strong{font-size:12px}.ability-box small{font-size:10px}.skill-guide span{font-size:10px}}
 /* v1.1: single-player NPC challenge */
 .game-modes{display:flex;align-items:center;flex-wrap:wrap;gap:8px;padding:10px;margin:-2px 0 16px;border-radius:14px;border:1px solid #29445f;background:#0b1a2c}
 .game-modes .mode-choice{padding:10px 17px;border-radius:10px;border:1px solid #3c5770;background:#162a43;color:#bdd4e9;font-size:14px;font-weight:900}
@@ -45,11 +55,12 @@
     <aside class="panel left" data-p="0">
       <div class="panel-title"><span class="player-name">● 玩家 1</span><span class="player-tag">藍色戰隊</span></div>
       <div class="tabs"><button type="button" class="mode on" data-mode="text">輸入文字</button><button type="button" class="mode" data-mode="draw">自由手繪</button></div>
-      <div class="text-slot"><label class="field-title" for="word0">你的文字（最多 4 字）</label><input id="word0" class="write-field" maxlength="8" value="龍" aria-label="玩家1文字"></div>
+      <div class="text-slot"><label class="field-title" for="word0">文字或詞組（最多 12 字元）</label><input id="word0" class="write-field" maxlength="12" value="龍" aria-label="玩家1文字"></div>
       <div class="editor-frame"><canvas class="editor" id="edit0" width="192" height="192" aria-label="玩家1手繪畫布"></canvas></div>
       <p class="hint" id="hint0">文字輪廓會影響陀螺性能</p>
       <div class="toolrow hidden" id="tools0"><button class="tool active" data-tool="pen" type="button">✎ 畫筆</button><button class="tool" data-tool="eraser" type="button">橡皮</button><button class="tool" data-tool="circle" type="button">◯</button><button class="tool" data-tool="star" type="button">☆</button><button class="tool" data-tool="undo" type="button">復原</button><button class="tool" data-tool="clear" type="button">清空</button></div>
       <div class="stat-grid"><div class="stat"><span>⚔ 攻擊</span><b class="statAtk">--</b></div><div class="stat"><span>◆ 防禦</span><b class="statDef">--</b></div><div class="stat"><span>◎ 持久</span><b class="statSta">--</b></div></div>
+      <div class="ability-box"><span class="ability-caption">文字特性 / SPECIAL</span><strong class="skillName">分析中…</strong><small class="skillDescription"></small><em class="skillTradeoff"></em></div>
       <div class="slider-line"><label for="power0">發射力量</label><b id="powerVal0">85%</b></div><input type="range" min="45" max="100" value="85" id="power0">
       <div class="slider-line"><label for="angle0">發射角度</label><b id="angleVal0">0°</b></div><input type="range" min="-45" max="45" step="5" value="0" id="angle0">
       <label class="field-title">旋轉方向</label><div class="spin-group"><button type="button" class="spin active" data-spin="1">↻ 右旋</button><button type="button" class="spin" data-spin="-1">↺ 左旋</button></div>
@@ -60,33 +71,34 @@
       <div class="bottom-hud"><span class="phase" id="phase">READY</span><span class="timer" id="timer">00:45</span><span class="phase" id="railStatus">X-RAIL ON</span></div>
       <div class="actions"><button type="button" id="launch" class="launch">⚡ 3・2・1 發射！</button><button type="button" id="reset" class="secondary">↺ 重新準備</button><button type="button" id="wipeScore" class="secondary">清除比分</button></div>
       <div class="systemlog" id="log">單人模式：左邊設計陀螺，右邊由電腦自動操作。</div>
-      <div class="desc" id="rules"><strong>玩法：</strong>單人模式由你設計陀螺、NPC 自動挑選中文、英文或幾何圖案，並依難度發射。也可切換雙人同機對戰。碰到外圍 <strong>X 加速軌道</strong>會自動高速衝刺；先停轉或飛出競技盤的一方落敗。</div>
+      <div class="desc" id="rules"><strong>玩法：</strong>左邊輸入文字或畫圖，單人挑戰 NPC 或切雙人。<strong>文字會觸發真實能力</strong>：RUSH 衝刺、CAMP 守中、FIRE／火 灼燒、龜 抗撞、速度 加速、大 巨型重擊；最多疊加兩種。沒有對應的文字仍依輪廓計算能力。<strong>X 加速軌</strong>能瞬間衝刺。<div class="skill-guide"><span>⚡ RUSH</span><span>🏕 CAMP</span><span>🔥 FIRE／火</span><span>🐢 龜</span><span>💨 速度</span><span>🔴 大</span></div></div>
     </section>
     <aside class="panel right" data-p="1">
       <div class="panel-title"><span class="player-name" id="rightPlayerName">● NPC 對手</span><span class="player-tag" id="rightPlayerTag">電腦操控</span></div>
       <div class="npc-config" id="npcConfig">
         <div class="npc-caption">當前對手<strong id="npcName">隨機生成中…</strong></div>
         <label class="npc-line" for="npcType">NPC 圖案類型
-          <select id="npcType"><option value="random">🎲 隨機混合</option><option value="zh">中文字</option><option value="en">英文字</option><option value="shape">制式幾何圖案</option></select>
+          <select id="npcType"><option value="random">🎲 隨機混合</option><option value="zh">中文字／中文詞語</option><option value="letter">英文字母 A–Z</option><option value="en">英文單詞／詞組</option><option value="shape">制式幾何圖案</option></select>
         </label>
         <label class="npc-line" for="npcDifficulty">難度
           <select id="npcDifficulty"><option value="easy">新手</option><option value="normal" selected>一般</option><option value="hard">高手</option></select>
         </label>
         <button class="npc-refresh" id="npcRefresh" type="button">↻ 換一個 NPC</button>
-        <p id="npcDescription">NPC 會根據造型計算攻擊、防禦與持久。</p>
+        <p id="npcDescription">NPC 的字詞可能觸發特效，幾何圖則依輪廓計算能力。</p>
       </div>
       <div class="tabs"><button type="button" class="mode on" data-mode="text">輸入文字</button><button type="button" class="mode" data-mode="draw">自由手繪</button></div>
-      <div class="text-slot"><label class="field-title" for="word1">你的文字（最多 4 字）</label><input id="word1" class="write-field" maxlength="8" value="雷" aria-label="玩家2文字"></div>
+      <div class="text-slot"><label class="field-title" for="word1">文字或詞組（最多 12 字元）</label><input id="word1" class="write-field" maxlength="12" value="雷" aria-label="玩家2文字"></div>
       <div class="editor-frame"><canvas class="editor" id="edit1" width="192" height="192" aria-label="玩家2手繪畫布"></canvas></div>
       <p class="hint" id="hint1">文字輪廓會影響陀螺性能</p>
       <div class="toolrow hidden" id="tools1"><button class="tool active" data-tool="pen" type="button">✎ 畫筆</button><button class="tool" data-tool="eraser" type="button">橡皮</button><button class="tool" data-tool="circle" type="button">◯</button><button class="tool" data-tool="star" type="button">☆</button><button class="tool" data-tool="undo" type="button">復原</button><button class="tool" data-tool="clear" type="button">清空</button></div>
       <div class="stat-grid"><div class="stat"><span>⚔ 攻擊</span><b class="statAtk">--</b></div><div class="stat"><span>◆ 防禦</span><b class="statDef">--</b></div><div class="stat"><span>◎ 持久</span><b class="statSta">--</b></div></div>
+      <div class="ability-box"><span class="ability-caption">文字特性 / SPECIAL</span><strong class="skillName">分析中…</strong><small class="skillDescription"></small><em class="skillTradeoff"></em></div>
       <div class="slider-line"><label for="power1">發射力量</label><b id="powerVal1">85%</b></div><input type="range" min="45" max="100" value="85" id="power1">
       <div class="slider-line"><label for="angle1">發射角度</label><b id="angleVal1">0°</b></div><input type="range" min="-45" max="45" step="5" value="0" id="angle1">
       <label class="field-title">旋轉方向</label><div class="spin-group"><button type="button" class="spin active" data-spin="1">↻ 右旋</button><button type="button" class="spin" data-spin="-1">↺ 左旋</button></div>
     </aside>
   </div>
-  <p class="meta">X 文字陀螺競技場 v1.1｜單人 NPC / 同機雙人・離線單檔・手機觸控・圖形衍生能力值</p>
+  <p class="meta">X 文字陀螺競技場 v1.2｜單人 NPC / 同機雙人・文字特效・離線單檔・手機觸控</p>
 </main>
 <script>
 'use strict';
@@ -101,7 +113,19 @@ const game={state:'ready',clock:45,count:0,tops:[],particles:[],trails:[],messag
 function tone(freq=300,duration=.10,type='triangle',volume=.12){if(!sound)return;try{audio=audio||new (window.AudioContext||window.webkitAudioContext)();if(audio.state==='suspended')audio.resume();const o=audio.createOscillator(),g=audio.createGain();o.type=type;o.frequency.setValueAtTime(freq,audio.currentTime);o.frequency.exponentialRampToValueAtTime(Math.max(50,freq*.48),audio.currentTime+duration);g.gain.setValueAtTime(volume,audio.currentTime);g.gain.exponentialRampToValueAtTime(.001,audio.currentTime+duration);o.connect(g).connect(audio.destination);o.start();o.stop(audio.currentTime+duration)}catch(_){}}
 function say(t){$('#log').textContent=t}
 function announce(t,col='#fff',ttl=1.0){game.message=t;game.msgColor=col;game.msgTime=ttl;say(t)}
-function makeTextMask(word){const c=off(),g=c.getContext('2d');const text=Array.from(word||'龍').slice(0,4).join('');const n=Array.from(text).length;let sz=n<=1?147:n===2?87:n===3?63:48;g.font=`900 ${sz}px "Noto Sans TC","Microsoft JhengHei",system-ui,sans-serif`;g.textAlign='center';g.textBaseline='middle';g.fillStyle='#fff';g.fillText(text,96,101,178);return c}
+function makeTextMask(word){
+ const c=off(),g=c.getContext('2d'),text=Array.from((word||'龍').trim()).slice(0,12).join(''),n=Array.from(text).length;
+ g.textAlign='center';g.textBaseline='middle';g.fillStyle='#fff';
+ const chunks=text.includes(' ')?text.split(/\s+/).filter(Boolean):[];
+ // Long Latin words and phrases remain entirely visible instead of being truncated to four letters.
+ const lines=chunks.length>1&&chunks.length<=3?chunks:(n>7?[text.slice(0,Math.ceil(n/2)),text.slice(Math.ceil(n/2))]:[text]);
+ const maxChars=Math.max(...lines.map(x=>Array.from(x).length),1);
+ let size=lines.length===1?(n<=1?147:n===2?88:n===3?64:n===4?49:Math.max(25,Math.floor(178/Math.max(1,maxChars*.62)))):Math.min(63,Math.floor(171/Math.max(1,maxChars*.68)));
+ if(lines.length===2)size=Math.min(size,67);if(lines.length===3)size=Math.min(size,48);
+ g.font=`900 ${size}px "Noto Sans TC","Microsoft JhengHei",system-ui,sans-serif`;
+ const lineHeight=size*1.09,startY=100-(lines.length-1)*lineHeight/2;
+ lines.forEach((line,i)=>g.fillText(line,96,startY+i*lineHeight,178));return c;
+}
 function rasterShape(p){const source=p.mode==='text'?makeTextMask(p.word):p.draw;let sourceCtx=source.getContext('2d',{willReadFrequently:true}), data=sourceCtx.getImageData(0,0,192,192).data;let pixels=0,sx=0,sy=0,minx=192,maxx=0,miny=192,maxy=0,perimeter=0,outline=Array(48).fill(0),angleCount=Array(48).fill(0);for(let y=4;y<188;y+=2)for(let x=4;x<188;x+=2){let idx=(y*192+x)*4;if(data[idx+3]<90)continue;pixels++;sx+=x;sy+=y;minx=Math.min(minx,x);maxx=Math.max(maxx,x);miny=Math.min(miny,y);maxy=Math.max(maxy,y);const dx=x-96,dy=y-96,r=Math.hypot(dx,dy),a=Math.atan2(dy,dx);let bi=Math.floor((a+Math.PI)/TAU*48)%48;outline[bi]=Math.max(outline[bi],r);angleCount[bi]++;if((data[idx-8+3]||0)<75||(data[idx+8+3]||0)<75||(data[((y-2)*192+x)*4+3]||0)<75||(data[((y+2)*192+x)*4+3]||0)<75)perimeter++;}
  if(!pixels)return null;
  const cx=sx/pixels,cy=sy/pixels,comOffset=Math.hypot(cx-96,cy-96)/62;
@@ -118,12 +142,62 @@ function rasterShape(p){const source=p.mode==='text'?makeTextMask(p.word):p.draw
  return {img:colored,source,attack,defense,stamina,fill,balance,rugged,mass:clamp(.85+defense/100*.75,.95,1.6),profile:outline.map(v=>Math.max(.66,v/Math.max(1,Math.max(...outline))))};
 }
 function redrawEditor(p){const g=$(`#edit${p.i}`).getContext('2d');g.clearRect(0,0,192,192);const s=p.mode==='text'?makeTextMask(p.word):p.draw;g.save();g.shadowColor=colors[p.i];g.shadowBlur=15;g.drawImage(s,0,0);g.restore();g.save();g.globalCompositeOperation='source-in';g.fillStyle=colors[p.i];g.fillRect(0,0,192,192);g.restore();}
+// A rule-based vocabulary (not a claim to understand all language); unfamiliar words still use their actual outline.
+const skillData={
+ rush:{name:'⚡ RUSH／衝刺',description:'每隔一段時間追擊對手，啟動後瞬間加速。',cost:'代價：較耗轉速、略脆弱',atk:11,def:-6,sta:-7},
+ camp:{name:'🏕 CAMP／守中',description:'會往競技盤中心回防，降低受擊退距離。',cost:'代價：衝刺速度下降',atk:-7,def:12,sta:7},
+ fire:{name:'🔥 FIRE／火',description:'撞擊命中讓對手灼燒，持續損失轉速。',cost:'代價：自身持久下降',atk:8,def:-3,sta:-9},
+ turtle:{name:'🐢 龜／龜甲',description:'減少受到的衝擊及轉速傷害。',cost:'代價：移動較慢、攻擊較弱',atk:-10,def:18,sta:5},
+ speed:{name:'💨 SPEED／速度',description:'移動更快、X 加速軌冷卻更短。',cost:'代價：容易被擊退、耗轉更快',atk:5,def:-12,sta:-6},
+ big:{name:'🔴 BIG／大',description:'陀螺更大更重，撞擊推擠更強。',cost:'代價：轉速下降更快、移動較慢',atk:11,def:10,sta:-15},
+ ice:{name:'❄️ ICE／冰',description:'撞擊可使對手短暫減速。',cost:'代價：攻擊力略低',atk:-2,def:5,sta:0},
+ thunder:{name:'⚡ THUNDER／雷',description:'碰撞有機率追加電擊傷害。',cost:'代價：持久略低',atk:10,def:-5,sta:-4},
+ spin:{name:'🌀 SPIN／旋',description:'旋轉衰減降低，適合打持久戰。',cost:'代價：撞擊推力較弱',atk:-8,def:0,sta:14}
+};
+const wordPatterns=[
+ ['rush',/RUSH|DASH|CHARGE|衝刺|衝鋒|猛攻|急襲|突擊|爆衝|疾衝|衝/u],
+ ['camp',/CAMP|GUARD|FORT|守中|陣地|堡壘|營地|防守|駐守|陣/u],
+ ['fire',/FIRE|FLAME|BURN|BLAZE|PHOENIX|烈焰|火焰|炎|焰|火/u],
+ ['turtle',/TURTLE|SHELL|SHIELD|ARMOR|WALL|GUARDIAN|龜甲|烏龜|玄武|鐵壁|護盾|重盾|盾|龜/u],
+ ['speed',/SPEED|FAST|QUICK|SWIFT|SONIC|速度|高速|加速|疾風|疾速|迅速|快|速/u],
+ ['big',/GIANT|HUGE|TITAN|HEAVY|BIG|巨大|巨型|大王|大力|重量|重擊|龐大|巨|大/u],
+ ['ice',/ICE|FROST|COLD|FREEZE|冰霜|冰凍|冰河|冰/u],
+ ['thunder',/THUNDER|BOLT|LIGHTNING|SHOCK|電擊|雷霆|閃電|雷|電/u],
+ ['spin',/SPIN|ENDLESS|CYCLONE|WIND|TORNADO|旋風|旋轉|持久|渦流|風|旋/u]
+];
+// A–Z are literally single letters. Their properties are a *game rule*, not a linguistic claim.
+const letterSkills={A:'rush',B:'big',C:'camp',D:'turtle',E:'fire',F:'fire',G:'turtle',H:'big',I:'ice',J:'rush',K:'big',L:'thunder',M:'camp',N:'spin',O:'spin',P:'fire',Q:'camp',R:'rush',S:'speed',T:'turtle',U:'turtle',V:'speed',W:'spin',X:'rush',Y:'thunder',Z:'speed'};
+// Offline exception table: prevents '火車' being just '火', and '大海' being just '大'.
+// Not a general AI semantic model. AI requires an authenticated backend.
+const phraseSkills={
+ '火車':['speed'], '高鐵':['speed','big'], '大海':['spin'], '大河':['spin'],
+ '火山':['fire','big'], '火箭':['rush','fire'], '冰火':['ice','fire'],
+ '營火':['camp','fire'], 'CAMP FIRE':['camp','fire'],
+ 'ICE FIRE':['ice','fire'], 'BIG RUSH':['big','rush']
+};
+function detectSkills(p){
+ if(p.mode!=='text')return[];
+ const text=(p.word||'').normalize('NFKC').toUpperCase().trim().replace(/\s+/g,' ');
+ if(!text)return[];
+ if(/^[A-Z]$/.test(text))return[letterSkills[text]];
+ if(Object.prototype.hasOwnProperty.call(phraseSkills,text))return phraseSkills[text];
+ const hits=[];for(const [key,regex] of wordPatterns)if(regex.test(text))hits.push(key);
+ return hits.slice(0,2);
+}
+function updateSkillView(p){const box=p.el.querySelector('.ability-box');if(!box)return;const ids=p.skills||[];
+ box.querySelector('.skillName').textContent=ids.length?ids.map(k=>skillData[k].name).join(' ＋ '):p.mode==='draw'?'✍️ 手繪輪廓':'◉ 輪廓特性';
+ box.querySelector('.skillDescription').textContent=ids.length?ids.map(k=>skillData[k].description).join(' '):p.mode==='draw'?'外形決定攻擊／防禦／持久；自由畫圖不自動辨識語意。':'這個字目前沒有指定特殊能力，依字形計算戰力。';
+ box.querySelector('.skillTradeoff').textContent=ids.length?ids.map(k=>skillData[k].cost).join(' ｜ '):'可試：RUSH、CAMP FIRE、火、龜、速度、大';
+}
 function updateStats(p){p.shape=rasterShape(p);let stats=p.shape;
+ p.skills=detectSkills(p);
  if(stats&&p.i===1&&battleMode==='solo'&&npcOpponent){
   const mods={attack:[12,-4,-5],defense:[-5,12,-3],stamina:[-5,-3,12],balance:[3,3,3]}[npcOpponent.role]||[0,0,0];
   stats.attack=clamp(stats.attack+mods[0],15,98);stats.defense=clamp(stats.defense+mods[1],16,98);stats.stamina=clamp(stats.stamina+mods[2],18,98);
   stats.mass=clamp(.85+stats.defense/100*.75,.95,1.6);
  }
+ if(stats){for(const id of p.skills){const x=skillData[id];stats.attack=clamp(stats.attack+x.atk,15,98);stats.defense=clamp(stats.defense+x.def,16,98);stats.stamina=clamp(stats.stamina+x.sta,18,98)}stats.mass=clamp(.85+stats.defense/100*.75,.95,1.6);}
+ updateSkillView(p);
  for(const [key,val] of [['Atk','attack'],['Def','defense'],['Sta','stamina']])p.el.querySelector('.stat'+key).textContent=stats?stats[val]:'--';redrawEditor(p);if(game.state==='ready')readyTops()}
 function setMode(p,mode){if(game.state==='countdown'||game.state==='play')return;p.mode=mode;p.el.querySelectorAll('.mode').forEach(b=>b.classList.toggle('on',b.dataset.mode===mode));p.el.querySelector('.text-slot').classList.toggle('hidden',mode!=='text');$(`#tools${p.i}`).classList.toggle('hidden',mode!=='draw');$(`#hint${p.i}`).textContent=mode==='draw'?'手指／滑鼠描繪；點 ◯ 或 ☆ 可畫完整形狀':'文字輪廓會影響陀螺性能';updateStats(p)}
 function saveHistory(p){const c=p.draw,sz=192;p.history.push(c.getContext('2d').getImageData(0,0,sz,sz));if(p.history.length>p.historyMax)p.history.shift()}
@@ -135,8 +209,13 @@ function endDraw(p,e){if(!p.drawing)return;p.drawing=false;p.previous=null;updat
 function addShape(p,type){saveHistory(p);const g=p.draw.getContext('2d');g.save();g.strokeStyle='#fff';g.lineWidth=14;g.lineCap='round';g.lineJoin='round';g.beginPath();if(type==='circle'){g.arc(96,96,61,0,TAU)}else{for(let i=0;i<10;i++){const a=-Math.PI/2+i*Math.PI/5,r=i%2?30:73,x=96+Math.cos(a)*r,y=96+Math.sin(a)*r;if(!i)g.moveTo(x,y);else g.lineTo(x,y)}g.closePath()}g.stroke();g.restore();updateStats(p)}
 // NPC opponents use exactly the same rasterized shape and physics as player-designed tops.
 const npcLibrary={
- zh:[{word:'雷霆',role:'attack'},{word:'烈焰',role:'attack'},{word:'龍',role:'balance'},{word:'虎',role:'attack'},{word:'冰盾',role:'defense'},{word:'鋼鐵',role:'defense'},{word:'疾風',role:'stamina'},{word:'旋',role:'stamina'},{word:'影',role:'balance'},{word:'爆裂',role:'attack'}],
- en:[{word:'RUSH',role:'attack'},{word:'BOLT',role:'attack'},{word:'FIRE',role:'attack'},{word:'IRON',role:'defense'},{word:'WALL',role:'defense'},{word:'SPIN',role:'stamina'},{word:'WIND',role:'stamina'},{word:'VOID',role:'balance'},{word:'ACE',role:'balance'},{word:'X',role:'attack'}],
+ zh:[
+ ...'火 炎 焰 雷 電 冰 雪 風 旋 大 巨 盾 龜 龍 虎 狼 鷹 鯊 牛 熊 豹 蛇 鳳 鋼 鐵 石 山 水 海 星 月 日 光 影 黑 白 紅 藍 金 銀 快 速 疾 衝 力 劍 刃 斧 矛 鎚 爆 烈 霸 皇 王 神 魔 聖 天 地 雷霆 烈焰 火焰 冰盾 冰河 冰霜 鋼鐵 龜甲 烏龜 玄武 疾風 速度 高速 加速 旋轉 旋風 持久 渦流 巨大 巨型 重擊 大王 大力 鐵壁 護盾 重盾 守中 陣地 堡壘 衝刺 衝鋒 突擊 猛攻 爆衝 龍王 火龍 雷龍 冰龍 電光 風刃 神速 冰火 火龜 風雷 雷火 炎龍 快龜'.split(' ').map(word=>({word,role:/(龜|盾|守|壁|堡|鋼|鐵)/.test(word)?'defense':/(風|旋|速|快|久)/.test(word)?'stamina':/(火|衝|雷|爆|刃|大|巨)/.test(word)?'attack':'balance'}))
+ ],
+ letter:'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').map(word=>({word,role:'balance'})),
+ en:[
+ ...'RUSH DASH CHARGE ATTACK BLADE STRIKE SMASH BOLT THUNDER LIGHTNING SHOCK FIRE FLAME BURN BLAZE PHOENIX CAMP FORT GUARD SHIELD ARMOR WALL TURTLE SHELL SPEED FAST QUICK SWIFT SONIC BIG GIANT HUGE TITAN HEAVY ICE FROST COLD FREEZE SPIN WIND CYCLONE TORNADO ENDLESS DRAGON TIGER WOLF SHARK PHANTOM VOID ACE HERO STAR LION METEOR NOVA STORM SWORD HAMMER APEX ROCKET ORBIT FURY FLASH GHOST SOLAR LUNAR STONE STEEL KING POWER IRON COMET RING RAZOR BISON RAMPAGE MAGNET EAGLE TURBO CROWN CAMP FIRE FIRE BALL BIG BANG MEGA RUSH ICE WALL SUPER SPEED'.split(' ').concat(['CAMP FIRE','FIRE BALL','BIG BANG','MEGA RUSH','ICE WALL','SUPER SPEED']).map(word=>({word,role:/(GUARD|SHIELD|ARMOR|WALL|CAMP|TURTLE|SHELL)/.test(word)?'defense':/(SPEED|SPIN|WIND|FAST|QUICK|SWIFT)/.test(word)?'stamina':/(RUSH|FIRE|BOLT|SMASH|BIG|GIANT|BLAZE|THUNDER)/.test(word)?'attack':'balance'}))
+ ],
  shape:[{word:'六芒星刃',pattern:'star',role:'attack'},{word:'鋸齒齒輪',pattern:'gear',role:'attack'},{word:'三角突刺',pattern:'triangle',role:'attack'},{word:'六角重盾',pattern:'hex',role:'defense'},{word:'雙環守衛',pattern:'ring',role:'defense'},{word:'旋轉渦流',pattern:'spiral',role:'stamina'},{word:'飛翼十字',pattern:'cross',role:'balance'},{word:'彗星撞擊',pattern:'comet',role:'balance'}]
 };
 const npcRoleNames={attack:'猛攻型',defense:'防禦型',stamina:'持久型',balance:'均衡型'};
@@ -158,7 +237,7 @@ function paintNpcPattern(p,pattern){
 }
 function buildNpc(){
  if(battleMode!=='solo'||game.state==='play'||game.state==='countdown')return;
- const p=players[1],requested=$('#npcType').value,kind=requested==='random'?['zh','en','shape'][Math.floor(rand(0,3))]:requested;
+ const p=players[1],requested=$('#npcType').value,kind=requested==='random'?['zh','en','letter','shape'][Math.floor(rand(0,4))]:requested;
  const options=npcLibrary[kind],chosen=options[Math.floor(rand(0,options.length))];
  npcOpponent={...chosen,kind};p.mode=kind==='shape'?'draw':'text';p.word=chosen.word;
  if(kind==='shape')paintNpcPattern(p,chosen.pattern);
@@ -166,10 +245,10 @@ function buildNpc(){
  const power=Math.floor(rand(min,max+1)),angle=Math.round(rand(-36,37)/5)*5;
  $('#power1').value=power;$('#powerVal1').textContent=power+'%';$('#angle1').value=angle;$('#angleVal1').textContent=angle+'°';
  p.spin=Math.random()<.5?-1:1;
- const badge=kind==='shape'?'圖案':'字形';
+ const badge=kind==='shape'?'圖案':kind==='letter'?'英文字母':kind==='en'?'英文單詞／詞組':'中文字詞';
  $('#npcName').textContent=chosen.word+' · '+npcRoleNames[chosen.role];
  $('#npcDescription').textContent=badge+'對手｜'+(p.spin===1?'右旋':'左旋')+'｜'+({easy:'新手',normal:'一般',hard:'高手'}[diff])+'難度，電腦會自行發射。';
- $('#hint1').textContent=kind==='shape'?'制式幾何圖案也會影響實際能力值':'NPC 的中英文文字會變成旋轉陀螺';
+ $('#hint1').textContent=kind==='shape'?'制式幾何圖案也會影響實際能力值':'文字會變成陀螺；指定詞語還有真正特效';
  updateStats(p);if(game.state==='ready')readyTops();
 }
 function setBattleMode(next,initial=false){
@@ -183,8 +262,8 @@ function setBattleMode(next,initial=false){
  $('#soloBtn').classList.toggle('active',solo);$('#duoBtn').classList.toggle('active',!solo);
  $('#soloBtn').setAttribute('aria-pressed',String(solo));$('#duoBtn').setAttribute('aria-pressed',String(!solo));
  $('#rightPlayerName').textContent=solo?'● NPC 對手':'● 玩家 2';$('#rightPlayerTag').textContent=solo?'電腦操控':'紅色戰隊';$('#opponentScoreName').textContent=solo?'NPC':'P2';
- $('#modeHint').textContent=solo?'自己設計陀螺，挑戰隨機 NPC！':'兩個人各自設計，再一起發射！';
- $('#rules').innerHTML=solo?'<strong>單人玩法：</strong>左邊自由輸入或手繪，右邊由 NPC 使用中文、英文或幾何圖案自動對戰。可設定對手類型與難度。外圈 <strong>X 加速軌道</strong>會觸發高速攻擊。':'<strong>雙人玩法：</strong>左右各自輸入文字或手繪，設定力量、角度與旋轉方向，再一起發射。碰到 <strong>X 加速軌道</strong>會高速攻擊。';
+ $('#modeHint').textContent=solo?'挑戰中文字、A–Z 字母、英文單詞或圖案！':'兩個人各自設計，再一起發射！';
+ $('#rules').innerHTML=solo?'<strong>單人玩法：</strong>左邊自己輸入文字或手繪；NPC 可選中文字、A–Z 英文字母、英文單詞或制式圖案。RUSH／CAMP／FIRE／龜／速度／大等詞有戰鬥特效，最多可組合兩種。外圈 <strong>X 加速軌</strong>會高速攻擊。':'<strong>雙人玩法：</strong>雙方輸入文字或手繪，也能組合技能：CAMP FIRE 會回守中間並有灼燒效果。設定力量、角度與旋向後發射，<strong>X 加速軌</strong>會高速攻擊。';
  if(solo)buildNpc();else{
   const p=players[1];p.word=p2Human.word;p.spin=p2Human.spin;$('#word1').value=p.word;
   if(p2Human.draw)p.draw.getContext('2d').putImageData(p2Human.draw,0,0);
@@ -198,7 +277,7 @@ function setBattleMode(next,initial=false){
  readyTops();
 }
 function setup(){players.forEach(p=>{const id=p.i,edit=$(`#edit${id}`);edit.addEventListener('pointerdown',e=>beginDraw(p,e));edit.addEventListener('pointermove',e=>moveDraw(p,e));edit.addEventListener('pointerup',e=>endDraw(p,e));edit.addEventListener('pointercancel',e=>endDraw(p,e));edit.addEventListener('lostpointercapture',e=>endDraw(p,e));
- p.el.querySelectorAll('.mode').forEach(b=>b.onclick=()=>setMode(p,b.dataset.mode));$(`#word${id}`).addEventListener('input',e=>{p.word=Array.from(e.target.value).slice(0,4).join('');if(game.state==='ready')updateStats(p)});
+ p.el.querySelectorAll('.mode').forEach(b=>b.onclick=()=>setMode(p,b.dataset.mode));$(`#word${id}`).addEventListener('input',e=>{p.word=Array.from(e.target.value).slice(0,12).join('');if(game.state==='ready')updateStats(p)});
  p.el.querySelectorAll('.tool').forEach(b=>b.onclick=()=>{if(game.state==='play'||game.state==='countdown')return;const t=b.dataset.tool;if(t==='clear'){saveHistory(p);p.draw.getContext('2d').clearRect(0,0,192,192);updateStats(p)}else if(t==='undo'){let h=p.history.pop();if(h){p.draw.getContext('2d').putImageData(h,0,0);updateStats(p)}}else if(t==='circle'||t==='star')addShape(p,t);else{p.tool=t;p.el.querySelectorAll('.tool').forEach(k=>k.classList.toggle('active',k.dataset.tool===t))}});
  p.el.querySelectorAll('.spin').forEach(b=>b.onclick=()=>{if(game.state==='play'||game.state==='countdown')return;p.spin=Number(b.dataset.spin);p.el.querySelectorAll('.spin').forEach(s=>s.classList.toggle('active',s===b))});
  for(const type of ['power','angle'])$(`#${type}${id}`).addEventListener('input',e=>{$(`#${type}Val${id}`).textContent=e.target.value+(type==='power'?'%':'°')});updateStats(p)});
@@ -207,7 +286,9 @@ function setup(){players.forEach(p=>{const id=p.i,edit=$(`#edit${id}`);edit.addE
  $('#npcDifficulty').onchange=()=>{if(game.state==='over')reset();buildNpc()};
  $('#npcRefresh').onclick=()=>{if(game.state==='over')reset();buildNpc();say('已抽出新對手：'+npcOpponent.word+'！')};
  $('#launch').onclick=launch;$('#reset').onclick=reset;$('#wipeScore').onclick=()=>{score=[0,0];updateScore();say('比分已清除。')};$('#muteBtn').onclick=()=>{sound=!sound;$('#muteBtn').textContent=sound?'🔊 音效開':'🔇 音效關';tone(600,.09)};updateScore();setBattleMode('solo',true);readyTops()}
-function makeTop(p){const s=p.shape||rasterShape(p);if(!s)return null;return{id:p.i,shape:s,color:colors[p.i],x:C+(p.i===0?-145:145),y:C+rand(-29,29),vx:0,vy:0,spin:0,spinDir:p.spin,angle:rand(-.5,.5),r:36,m:s.mass,atk:s.attack,def:s.defense,sta:s.stamina,railCd:0,trailCd:0,ko:false,boost:0,hitCd:0,crash:0}}
+function makeTop(p){const s=p.shape||rasterShape(p);if(!s)return null;const skills=p.skills||[];
+ return{id:p.i,shape:s,color:colors[p.i],x:C+(p.i===0?-145:145),y:C+rand(-29,29),vx:0,vy:0,spin:0,spinDir:p.spin,angle:rand(-.5,.5),r:skills.includes('big')?47:36,m:s.mass*(skills.includes('big')?1.4:1),atk:s.attack,def:s.defense,sta:s.stamina,skills,railCd:0,trailCd:0,ko:false,boost:0,hitCd:0,crash:0,rushCd:2.2,burn:0,chill:0,shockCd:0};
+}
 function readyTops(){if(game.state!=='ready')return;game.tops=players.map(makeTop).filter(Boolean)}
 function updateScore(){$('#score0').textContent=score[0];$('#score1').textContent=score[1]}
 function overlay(t,sub='',col='#ffffff'){const n=$('#overlay');n.classList.remove('hide');n.querySelector('b').textContent=t;n.querySelector('b').style.color=col;n.querySelector('small').textContent=sub}
@@ -216,29 +297,53 @@ function launch(){if(game.state==='play'||game.state==='countdown')return;
  if(game.state==='over'&&battleMode==='solo')buildNpc();
  players.forEach(updateStats);if(players.some(p=>!p.shape)){overlay('請先畫出陀螺','目前有空白的畫布','#ffd36a');say('自由手繪至少要有一筆，或切回輸入文字。');return}
  game.tops=players.map(makeTop);game.state='countdown';game.clock=45;game.count=3.0;game.trails=[];game.particles=[];game.message='';game.msgTime=0;game.shake=0;round++;$('#launch').disabled=true;$('#phase').textContent='COUNTDOWN';overlay('3','準備發射！');say('3・2・1 ...');tone(500,.12)}
-function go(){game.state='play';game.count=0;hideOverlay();$('#phase').textContent='FIGHT!';for(const t of game.tops){const p=players[t.id];const power=Number($(`#power${t.id}`).value)/100, ang=Number($(`#angle${t.id}`).value)*Math.PI/180;const theta=t.id===0?ang:Math.PI-ang;t.vx=Math.cos(theta)*(150+260*power);t.vy=Math.sin(theta)*(150+260*power)+rand(t.id===1&&battleMode==='solo'&&$('#npcDifficulty').value==='easy'?-58:-27,t.id===1&&battleMode==='solo'&&$('#npcDifficulty').value==='easy'?58:27);t.spin=68+power*45+(t.sta-55)*.20;t.trailCd=0;t.railCd=0;t.ko=false;t.hitCd=0}tone(900,.22,'sawtooth',.15);announce('SHOOT!!','#eafaff',.6)}
+function go(){game.state='play';game.count=0;hideOverlay();$('#phase').textContent='FIGHT!';for(const t of game.tops){const p=players[t.id];const power=Number($(`#power${t.id}`).value)/100, ang=Number($(`#angle${t.id}`).value)*Math.PI/180;const theta=t.id===0?ang:Math.PI-ang;t.vx=Math.cos(theta)*(150+260*power);t.vy=Math.sin(theta)*(150+260*power)+rand(t.id===1&&battleMode==='solo'&&$('#npcDifficulty').value==='easy'?-58:-27,t.id===1&&battleMode==='solo'&&$('#npcDifficulty').value==='easy'?58:27);t.spin=68+power*45+(t.sta-55)*.20;
+ if(t.skills.includes('speed')){t.vx*=1.22;t.vy*=1.22}
+ if(t.skills.includes('rush')){t.vx*=1.18;t.vy*=1.18}
+ if(t.skills.includes('camp')||t.skills.includes('turtle')){t.vx*=.84;t.vy*=.84}
+ if(t.skills.includes('big')){t.vx*=.88;t.vy*=.88}
+ t.trailCd=0;t.railCd=0;t.ko=false;t.hitCd=0}tone(900,.22,'sawtooth',.15);announce('SHOOT!!','#eafaff',.6)}
 function reset(){if(game.state==='countdown'||game.state==='play'){say('比賽中止，重新設計兩顆陀螺。')}else say('已重新準備，可以修改文字或圖案。');game.state='ready';game.clock=45;game.tops=[];game.trails=[];game.particles=[];game.msgTime=0;$('#launch').disabled=false;$('#launch').textContent='⚡ 3・2・1 發射！';$('#phase').textContent='READY';$('#timer').textContent='00:45';overlay(battleMode==='solo'?'SOLO CHALLENGE':'DESIGN & BATTLE',battleMode==='solo'?'設計你的陀螺，挑戰電腦！':'設計兩顆陀螺，按下發射開始！');players.forEach(updateStats);readyTops()}
 function finish(winner,reason){if(game.state!=='play')return;game.state='over';$('#phase').textContent='FINISH';$('#launch').disabled=false;$('#launch').textContent=battleMode==='solo'?'⚡ 再戰（換 NPC）':'⚡ 再戰一局';if(winner===-1){overlay('DRAW','平手！'+reason,'#e6f0ff');say('平手：'+reason)}else{score[winner]++;updateScore();overlay(battleMode==='solo'?(winner===0?'YOU WIN!':'NPC WIN!'):'P'+(winner+1)+' WIN!','勝利方式：'+reason,colors[winner]);say((battleMode==='solo'?(winner===0?'你':'NPC '+(npcOpponent?.word||'')):'玩家 '+(winner+1))+' 獲勝！'+reason);tone(winner===0?700:540,.32,'triangle',.16)} }
 function particle(x,y,color,count=12,fast=140){for(let i=0;i<count;i++){const a=rand(0,TAU),s=rand(40,fast);game.particles.push({x,y,vx:Math.cos(a)*s,vy:Math.sin(a)*s,life:rand(.16,.5),max:.5,color,sz:rand(1.5,4)})}if(game.particles.length>180)game.particles.splice(0,game.particles.length-180)}
 function angleDiff(a,b){return Math.atan2(Math.sin(a-b),Math.cos(a-b))}
 function pocket(a){return Math.abs(angleDiff(a,-Math.PI/2))<.22||Math.abs(angleDiff(a,Math.PI/2))<.22||Math.abs(angleDiff(a,Math.PI))<.15}
-function accelerate(t,other){if(t.railCd>0||t.ko||t.spin<8)return;const dx=other.x-t.x,dy=other.y-t.y,d=Math.hypot(dx,dy)||1;const tangent=t.spinDir;const boost=430+Math.min(60,t.atk*.35);t.vx=dx/d*boost-dy/d*60*tangent;t.vy=dy/d*boost+dx/d*60*tangent;t.spin=Math.max(5,t.spin-5.5);t.railCd=3.8;t.boost=.65;game.shake=7;particle(t.x,t.y,t.color,30,260);announce('⚡ X-DASH!',t.color,.75);tone(1100,.24,'sawtooth',.18)}
+function accelerate(t,other){if(t.railCd>0||t.ko||t.spin<8)return;const dx=other.x-t.x,dy=other.y-t.y,d=Math.hypot(dx,dy)||1;const tangent=t.spinDir;const boost=(430+Math.min(60,t.atk*.35))*(t.skills.includes('speed')?1.22:1)*(t.skills.includes('camp')?.82:1)*(t.skills.includes('turtle')?.87:1);t.vx=dx/d*boost-dy/d*60*tangent;t.vy=dy/d*boost+dx/d*60*tangent;t.spin=Math.max(5,t.spin-5.5);t.railCd=t.skills.includes('speed')?2.5:3.8;t.boost=.65;game.shake=7;particle(t.x,t.y,t.color,30,260);announce('⚡ X-DASH!',t.color,.75);tone(1100,.24,'sawtooth',.18)}
 function collide(a,b){if(a.ko||b.ko)return;let dx=b.x-a.x,dy=b.y-a.y,d=Math.hypot(dx,dy)||.1;const minD=a.r+b.r-6;if(d>=minD)return;const nx=dx/d,ny=dy/d,overlap=minD-d;const total=a.m+b.m;a.x-=nx*overlap*b.m/total;b.x+=nx*overlap*a.m/total;a.y-=ny*overlap*b.m/total;b.y+=ny*overlap*a.m/total;let rvx=b.vx-a.vx,rvy=b.vy-a.vy,speed=rvx*nx+rvy*ny;if(speed>0&&overlap<5)return;
- const rel=Math.abs(speed);let restitution=.74,impact=-(1+restitution)*Math.min(speed,-20)/(1/a.m+1/b.m);const impulseX=impact*nx,impulseY=impact*ny;a.vx-=impulseX/a.m;b.vx+=impulseX/b.m;a.vy-=impulseY/a.m;b.vy+=impulseY/b.m;
+ const rel=Math.abs(speed);let restitution=.74,impact=-(1+restitution)*Math.min(speed,-20)/(1/a.m+1/b.m);const impulseX=impact*nx,impulseY=impact*ny;const repel=t=>t.skills.includes('turtle')?.55:t.skills.includes('camp')?.72:t.skills.includes('speed')?1.19:1;
+ a.vx-=impulseX/a.m*repel(a);b.vx+=impulseX/b.m*repel(b);a.vy-=impulseY/a.m*repel(a);b.vy+=impulseY/b.m*repel(b);
  // Spin losses depend on approach velocity, attacker profile, defense and shape stability.
  const harmA=clamp(2+rel*.026+(b.atk-a.def*.38)*.045+(b.boost>0?5:0),.7,20);const harmB=clamp(2+rel*.026+(a.atk-b.def*.38)*.045+(a.boost>0?5:0),.7,20);
- if(a.hitCd<=0){a.spin-=harmA*(.95+a.def/190*-1);a.hitCd=.12}if(b.hitCd<=0){b.spin-=harmB*(.95+b.def/190*-1);b.hitCd=.12}
+ function strike(victim,attacker,harm){if(victim.hitCd>0)return;
+  const shield=victim.skills.includes('turtle')?.62:victim.skills.includes('camp')?.84:1;
+  victim.spin-=harm*(.95-victim.def/190)*shield;victim.hitCd=.14;
+  if(rel>75&&attacker.skills.includes('fire')){victim.burn=Math.max(victim.burn,2.5);particle(victim.x,victim.y,'#ff853d',8,95)}
+  if(rel>75&&attacker.skills.includes('ice')){victim.chill=Math.max(victim.chill,1.6);particle(victim.x,victim.y,'#a3ecff',7,110)}
+  if(rel>105&&attacker.skills.includes('thunder')&&attacker.shockCd<=0){victim.spin-=4.4;attacker.shockCd=1.2;particle(victim.x,victim.y,'#ffdf5b',11,140)}
+ }
+ strike(a,b,harmA);strike(b,a,harmB);
  a.vx+=rand(-16,16);a.vy+=rand(-16,16);b.vx+=rand(-16,16);b.vy+=rand(-16,16);a.crash=b.crash=.27;game.shake=Math.max(game.shake,Math.min(10,rel*.022));const spark=rel>190?18:10;particle((a.x+b.x)/2,(a.y+b.y)/2,rel>190?'#ffeaa0':'#c8f4ff',spark,150+rel*.30);tone(180+rel*.64,.12,rel>200?'square':'triangle',.11);if(rel>330)announce('CRITICAL HIT!','#ffd36a',.45);
 }
 function step(dt){if(game.state==='countdown'){const before=Math.ceil(game.count);game.count-=dt;const after=Math.ceil(game.count);if(before!==after&&after>0){overlay(String(after),'準備發射！');tone(460+after*80,.10)}if(game.count<=0)go()}
  if(game.state==='play'){
  game.clock=Math.max(0,game.clock-dt);$('#timer').textContent=`00:${String(Math.ceil(game.clock)).padStart(2,'0')}`;
- for(const t of game.tops){if(t.ko)continue;const enemy=game.tops[1-t.id],px=t.x-C,py=t.y-C,rad=Math.hypot(px,py)||1,vel=Math.hypot(t.vx,t.vy),a=Math.atan2(py,px);t.railCd=Math.max(0,t.railCd-dt);t.hitCd=Math.max(0,t.hitCd-dt);t.boost=Math.max(0,t.boost-dt);t.crash=Math.max(0,t.crash-dt);
+ for(const t of game.tops){if(t.ko)continue;const enemy=game.tops[1-t.id],px=t.x-C,py=t.y-C,rad=Math.hypot(px,py)||1,vel=Math.hypot(t.vx,t.vy),a=Math.atan2(py,px);t.railCd=Math.max(0,t.railCd-dt);t.hitCd=Math.max(0,t.hitCd-dt);t.boost=Math.max(0,t.boost-dt);t.crash=Math.max(0,t.crash-dt);t.shockCd=Math.max(0,t.shockCd-dt);
+ if(t.burn>0){t.burn=Math.max(0,t.burn-dt);t.spin-=dt*2.9;if(Math.random()<dt*20)particle(t.x+rand(-19,19),t.y+rand(-19,19),'#ff934d',1,40)}
+ if(t.chill>0)t.chill=Math.max(0,t.chill-dt);
+ if(t.skills.includes('rush')){t.rushCd-=dt;if(t.rushCd<=0&&enemy&&!enemy.ko&&t.spin>16){const ex=enemy.x-t.x,ey=enemy.y-t.y,d=Math.max(1,Math.hypot(ex,ey));t.vx+=ex/d*230;t.vy+=ey/d*230;t.spin-=3.5;t.rushCd=3.2;t.boost=Math.max(t.boost,.26);particle(t.x,t.y,t.color,11,165);announce('⚡ RUSH!',t.color,.5)}}
  // Slight centripetal bowl force and gyroscopic sideways drift.
- t.vx+=(-px*.46+(-py/rad)*t.spinDir*42)*dt;t.vy+=(-py*.46+(px/rad)*t.spinDir*42)*dt;
- const drag=Math.exp(-.19*dt);t.vx*=drag;t.vy*=drag;const cap=650,sp=Math.hypot(t.vx,t.vy);if(sp>cap){t.vx*=cap/sp;t.vy*=cap/sp}
+ const pull=t.skills.includes('camp')?1.48:.46;
+ t.vx+=(-px*pull+(-py/rad)*t.spinDir*42)*dt;t.vy+=(-py*pull+(px/rad)*t.spinDir*42)*dt;
+ const drag=Math.exp(-(t.skills.includes('big')?.38:t.skills.includes('turtle')?.32:.19)*dt);t.vx*=drag;t.vy*=drag;
+ if(t.chill>0){t.vx*=Math.exp(-.5*dt);t.vy*=Math.exp(-.5*dt)}
+ const cap=t.skills.includes('speed')?745:650,sp=Math.hypot(t.vx,t.vy);if(sp>cap){t.vx*=cap/sp;t.vy*=cap/sp}
  t.x+=t.vx*dt;t.y+=t.vy*dt;t.angle+=t.spinDir*(5.5+Math.max(0,t.spin)*.105)*dt;
- t.spin-=dt*(1.65+(Math.hypot(t.vx,t.vy)/200)*1.8 + (1-t.shape.balance)*.75);
+ let spinDrain=1.65+(Math.hypot(t.vx,t.vy)/200)*1.8+(1-t.shape.balance)*.75;
+ if(t.skills.includes('spin'))spinDrain*=.72;
+ if(t.skills.includes('speed'))spinDrain*=1.09;
+ if(t.skills.includes('big'))spinDrain*=1.22;
+ if(t.skills.includes('rush'))spinDrain*=1.08;
+ t.spin-=dt*spinDrain;
  // Perimeter rail near the left/right edges. A brief cooldown prevents loops.
  const nt=Math.hypot(t.x-C,t.y-C),angle=Math.atan2(t.y-C,t.x-C);const xRail=Math.abs(Math.cos(angle))>.39;if(nt>239&&nt<286&&xRail&&t.railCd<=0)accelerate(t,enemy);
  if(nt>R-t.r*.55){const ux=(t.x-C)/nt,uy=(t.y-C)/nt,radSpeed=t.vx*ux+t.vy*uy;const escaped=pocket(angle)&&radSpeed>95&&(t.boost>0||radSpeed>185);if(escaped||(nt>R+17&&radSpeed>140)){t.ko=true;particle(t.x,t.y,t.color,35,260);announce('OVER FINISH!',t.color,.7);finish(1-t.id,'擊飛出界');break}
@@ -278,6 +383,12 @@ function drawArena(t){
 function drawTop(top){if(!top.shape)return;ctx.save();ctx.translate(top.x,top.y);let scale=top.r/40;
  ctx.save();ctx.translate(4,6);ctx.rotate(top.angle);ctx.globalAlpha=.34;ctx.filter='blur(4px)';ctx.drawImage(top.shape.img,-50*scale,-50*scale,100*scale,100*scale);ctx.restore();
  ctx.save();ctx.rotate(top.angle);ctx.shadowBlur=top.boost>0?29:15;ctx.shadowColor=top.color;ctx.drawImage(top.shape.img,-49*scale,-49*scale,98*scale,98*scale);ctx.restore();
+ if(top.skills.includes('camp')){arc(0,0,43,0,TAU,'#8af0ae99',2.7)}
+ if(top.skills.includes('turtle')){arc(0,0,42,0,TAU,'#a0f7b9b7',5)}
+ if(top.skills.includes('big')){arc(0,0,51,0,TAU,'#ffa65b99',3)}
+ if(top.skills.includes('speed')){arc(0,0,44,top.angle,top.angle+2.2,'#9cffffdd',3)}
+ if(top.burn>0){ctx.shadowColor='#ff6b25';ctx.shadowBlur=20;arc(0,0,42,-1.2,1.4,'#ff8a31',5)}
+ if(top.chill>0){ctx.shadowColor='#a7eaff';ctx.shadowBlur=12;arc(0,0,45,.6,4.1,'#a7eaff',4)}
  const gl=ctx.createRadialGradient(-3,-4,1,0,0,16);gl.addColorStop(0,'#fff');gl.addColorStop(.17,top.color);gl.addColorStop(.45,'#27405a');gl.addColorStop(.73,'#071c32');gl.addColorStop(1,top.color);circle(0,0,15*scale,gl,'#d6f6ffb8',1.8);circle(-3,-4,4*scale,'#ffffffbf');
  if(top.boost>0){arc(0,0,48,top.angle,top.angle+2.7,top.color,4);arc(0,0,48,top.angle+Math.PI,top.angle+Math.PI+1.7,'#ffffffaa',2)}
  ctx.restore();
