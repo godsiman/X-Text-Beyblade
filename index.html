@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,maximum-scale=1">
 <meta name="theme-color" content="#09101c">
-<title>X 文字陀螺競技場｜雙人手繪對戰</title>
+<title>X 文字陀螺競技場｜單人 NPC 挑戰・雙人手繪對戰</title>
 <style>
 :root{--bg:#080f1b;--panel:#111d30;--line:#28415c;--white:#edf6ff;--muted:#9ab0c8;--cyan:#25d8ff;--pink:#ff5189;--gold:#ffd36a}
 *{box-sizing:border-box} html,body{margin:0;min-height:100%;background:radial-gradient(ellipse at 50% -20%,#253d62 0%,#101b2d 37%,#070e19 82%);color:var(--white);font-family:system-ui,-apple-system,'Noto Sans TC','Microsoft JhengHei',sans-serif} button,input,select{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--gold);outline-offset:2px} .shell{max-width:1560px;padding:22px clamp(10px,2vw,30px) 36px;margin:auto} .header{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:18px}.eyebrow{font-size:11px;letter-spacing:.22em;font-weight:850;color:var(--cyan)}h1{font-size:clamp(24px,3vw,38px);letter-spacing:.035em;margin:3px 0 0;line-height:1.1} h1 span{color:var(--cyan)}.subtitle{font-size:12px;color:var(--muted);margin:8px 0 0}.head-actions{display:flex;gap:9px;align-items:center}.pill{background:#122239;border:1px solid #36506c;border-radius:100px;padding:9px 13px;color:#cfdfef;font-size:12px;white-space:nowrap}.small-btn{padding:9px 12px;color:var(--white);background:#1b3049;border:1px solid #45617b;border-radius:10px;font-weight:700}.layout{display:grid;grid-template-columns:minmax(215px,260px) minmax(380px,1fr) minmax(215px,260px);grid-template-areas:'left arena right';gap:16px;align-items:start}.panel{background:linear-gradient(155deg,rgba(25,44,66,.96),rgba(12,23,39,.98));border:1px solid #304763;border-radius:19px;padding:16px;box-shadow:0 14px 35px #0307114d}.panel.left{grid-area:left}.panel.right{grid-area:right}.panel.left{--accent:var(--cyan)}.panel.right{--accent:var(--pink)}.panel-title{display:flex;justify-content:space-between;align-items:center;margin-bottom:13px}.player-name{color:var(--accent);font-size:17px;font-weight:900}.player-tag{font-size:10px;color:var(--muted);border:1px solid var(--line);padding:3px 7px;border-radius:6px}.panel label.field-title{display:block;color:#cad9e8;font-weight:800;font-size:12px;margin:12px 0 6px}.tabs{display:flex;background:#0a1424;border:1px solid #2c4663;border-radius:9px;padding:3px;gap:3px}.tabs button{border:0;background:transparent;color:#879db5;flex:1;border-radius:7px;padding:8px 2px;font-size:12px;font-weight:800}.tabs button.on{color:#06151c;background:var(--accent);box-shadow:0 2px 12px #0004}.write-field{width:100%;background:#091525;border:1px solid #3b5370;color:#fff;border-radius:9px;min-height:40px;padding:10px;font-size:19px;font-weight:800}.editor-frame{position:relative;background:radial-gradient(circle at center,#19324a 0%,#0b1728 69%);border:1px solid #375674;border-radius:14px;overflow:hidden;aspect-ratio:1;max-width:220px;margin:12px auto}.editor-frame:before{content:'';pointer-events:none;position:absolute;inset:0;background:linear-gradient(90deg,transparent 49.6%,#51708b30 50%,transparent 50.4%),linear-gradient(transparent 49.6%,#51708b30 50%,transparent 50.4%);z-index:1}.editor-frame:after{content:'';pointer-events:none;position:absolute;inset:10%;border-radius:50%;border:1px dashed #6585a250}.editor{display:block;width:100%;height:100%;touch-action:none;cursor:crosshair;position:relative;z-index:2}.hint{color:#95acc2;text-align:center;font-size:11px;margin:-4px auto 8px;line-height:1.5}.toolrow{display:flex;gap:5px;justify-content:center;flex-wrap:wrap;min-height:34px}.tool{border:1px solid #344e67;border-radius:7px;background:#14263c;color:#cddbea;font-weight:800;font-size:11px;padding:7px 10px}.tool.active{border-color:var(--accent);color:var(--accent)}.tool:disabled{opacity:.34;cursor:default}.stat-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;margin:15px 0 12px}.stat{border-radius:9px;background:#091525;border:1px solid #263e56;padding:8px 4px;text-align:center}.stat span{font-size:11px;color:#9eb3c8;display:block}.stat b{font-size:18px;color:#eef7fc;display:block;margin-top:3px;font-variant-numeric:tabular-nums}.slider-line{display:flex;justify-content:space-between;font-size:12px;font-weight:750;color:#bcd2e5}.slider-line b{color:var(--accent)}input[type=range]{width:100%;height:22px;accent-color:var(--accent);margin:3px 0 11px}.spin-group{display:flex;gap:6px}.spin-group button{flex:1;background:#0b1929;border:1px solid #385169;color:#91a9c0;padding:8px 4px;font-size:12px;font-weight:800;border-radius:8px}.spin-group button.active{background:color-mix(in srgb,var(--accent) 16%,#111e2d);border-color:var(--accent);color:var(--accent)}.center{grid-area:arena;min-width:0}.versus{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px;margin:0 4px 12px}.team-score{display:flex;gap:10px;align-items:center;justify-content:flex-start;color:var(--cyan);font-size:13px;font-weight:800}.team-score.right{justify-content:flex-end;color:var(--pink)}.score{border:1px solid #39536d;background:#102136;border-radius:9px;padding:5px 12px;font-size:19px;color:#fff;font-variant-numeric:tabular-nums}.vs{font-size:19px;color:#e9f2fc;font-style:italic;font-weight:1000}.arena-wrap{position:relative;max-width:720px;margin:0 auto;isolation:isolate}.arena-wrap:before{content:'';position:absolute;inset:-7px;border-radius:50%;background:conic-gradient(from 30deg,#1ce2ff35,#ff3a7d35,#76a7ff35,#1ce2ff35);filter:blur(20px);z-index:-1}.arena{display:block;width:100%;height:auto;aspect-ratio:1;touch-action:none;background:transparent}.overlay{pointer-events:none;position:absolute;left:50%;top:46%;transform:translate(-50%,-50%);text-align:center;min-width:75%;max-width:95%;text-shadow:0 4px 24px #020811f0}.overlay b{display:block;font-size:clamp(26px,5vw,62px);font-style:italic;line-height:1.15;font-weight:1000;letter-spacing:.05em}.overlay small{display:block;margin-top:5px;font-size:12px;font-weight:800;color:#d9e8f6;letter-spacing:.08em}.overlay.hide{display:none}.bottom-hud{display:flex;justify-content:center;align-items:center;gap:10px;margin-top:-9px;position:relative;z-index:1}.timer{font-weight:800;color:#b4c6d9;font-size:12px;padding:8px}.phase{font-weight:750;color:var(--gold);font-size:12px}.actions{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:16px;flex-wrap:wrap}.launch{border:0;background:linear-gradient(110deg,#1cd8ff,#6decff);color:#041524;border-radius:13px;padding:14px 23px;font-size:18px;font-weight:1000;letter-spacing:.04em;box-shadow:0 6px 28px #16cdfc48}.launch:disabled{filter:grayscale(1);opacity:.5;cursor:not-allowed}.secondary{border:1px solid #506781;background:#142943;color:#d6e6f5;border-radius:12px;padding:13px 16px;font-weight:800}.desc{border:1px solid #2b425b;border-radius:13px;background:#0d1a2b;padding:12px 15px;color:#b2c6d8;font-size:12px;line-height:1.75;margin:18px 0 0}.desc strong{color:var(--gold)}.systemlog{font-size:12px;color:#c8dced;text-align:center;min-height:20px;margin-top:11px}.meta{font-size:11px;color:#778da3;text-align:center;margin-top:18px}.hidden{display:none!important}.spark{color:var(--gold)}
@@ -12,6 +12,22 @@
 @media(max-width:840px){.layout{grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-areas:'left right' 'arena arena';gap:9px}.panel{padding:12px}.center{max-width:660px;width:100%;margin:12px auto 0}.editor-frame{max-width:190px}.shell{padding-top:15px}.header{margin-bottom:12px}.subtitle{font-size:11px}}
 @media(max-width:420px){.shell{padding-inline:7px}.panel{padding:8px;border-radius:13px}.player-name{font-size:13px}.player-tag{font-size:9px}.editor-frame{margin:7px auto;max-width:155px}.tabs button{font-size:11px;padding:7px 1px}.write-field{font-size:16px;min-height:37px;padding:7px}.stat-grid{gap:3px;margin:9px 0}.stat{padding:5px 0}.stat span{font-size:10px}.stat b{font-size:14px}.tool{font-size:10px;padding:6px}.panel label.field-title{margin:9px 0 4px;font-size:11px}.hint{font-size:10px}.spin-group button{font-size:11px;padding:6px 2px}.header h1{font-size:25px}.desc{font-size:11px}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important}}
+
+/* v1.1: single-player NPC challenge */
+.game-modes{display:flex;align-items:center;flex-wrap:wrap;gap:8px;padding:10px;margin:-2px 0 16px;border-radius:14px;border:1px solid #29445f;background:#0b1a2c}
+.game-modes .mode-choice{padding:10px 17px;border-radius:10px;border:1px solid #3c5770;background:#162a43;color:#bdd4e9;font-size:14px;font-weight:900}
+.game-modes .mode-choice.active{color:#071b2a;background:linear-gradient(115deg,#37d9f8,#9ef5ff);border-color:#6de8ff}
+#modeHint{margin-left:auto;color:#a7c6db;font-size:12px;font-weight:700}
+.npc-config{display:none;border:1px solid #a54a7559;border-radius:12px;padding:10px;margin-bottom:10px;background:#26172b75}
+.npc-locked .npc-config{display:block}
+.npc-caption{font-size:12px;color:#f5bcd3;margin:0 0 9px}.npc-caption strong{display:block;font-size:18px;color:#fff;margin-top:3px;overflow-wrap:anywhere}
+.npc-line{display:flex;flex-direction:column;gap:4px;margin:8px 0;color:#d6bed1;font-size:11px;font-weight:900}
+.npc-line select{width:100%;padding:9px 8px;border:1px solid #714562;border-radius:9px;background:#101b30;color:#fff;font-size:13px}
+.npc-refresh{width:100%;margin-top:6px;padding:9px 7px;border:1px solid #c15e88;border-radius:9px;background:#47243d;color:#ffe0ef;font-weight:900}
+#npcDescription{font-size:11px;line-height:1.55;color:#c6a7bd;margin:9px 0 0}
+.npc-locked > .tabs,.npc-locked > .text-slot,.npc-locked > .toolrow,.npc-locked > .slider-line,.npc-locked > input[type=range],.npc-locked > label.field-title,.npc-locked > .spin-group{display:none!important}
+.npc-locked .editor-frame{margin-top:9px}
+@media(max-width:600px){.game-modes{margin-bottom:10px;padding:7px;gap:5px}.game-modes .mode-choice{flex:1;padding:9px 4px;font-size:12px}#modeHint{width:100%;text-align:center;margin:1px 0 0;font-size:10px}.npc-caption strong{font-size:14px}.npc-config{padding:7px}.npc-line{margin:6px 0}.npc-line select{font-size:12px;padding:7px 3px}}
 </style>
 </head>
 <body>
@@ -20,6 +36,11 @@
     <div><div class="eyebrow">CUSTOM DRAW · SPIN BATTLE · X-RAIL</div><h1>X <span>文字陀螺</span>競技場</h1><p class="subtitle">自己寫字、畫圖、製作專屬陀螺｜手機觸控、電腦滑鼠皆可玩</p></div>
     <div class="head-actions"><span class="pill">⚡ X-Rail 加速軌</span><button class="small-btn" id="muteBtn" type="button">🔇 音效關</button></div>
   </header>
+  <div class="game-modes" aria-label="對戰模式">
+    <button type="button" id="soloBtn" class="mode-choice active" aria-pressed="true">🎮 單人 VS 電腦</button>
+    <button type="button" id="duoBtn" class="mode-choice" aria-pressed="false">👥 雙人同機</button>
+    <span id="modeHint">自己設計陀螺，挑戰隨機 NPC！</span>
+  </div>
   <div class="layout">
     <aside class="panel left" data-p="0">
       <div class="panel-title"><span class="player-name">● 玩家 1</span><span class="player-tag">藍色戰隊</span></div>
@@ -34,15 +55,26 @@
       <label class="field-title">旋轉方向</label><div class="spin-group"><button type="button" class="spin active" data-spin="1">↻ 右旋</button><button type="button" class="spin" data-spin="-1">↺ 左旋</button></div>
     </aside>
     <section class="center" aria-label="競技場">
-      <div class="versus"><div class="team-score">P1 <span class="score" id="score0">0</span></div><div class="vs">VS</div><div class="team-score right"><span class="score" id="score1">0</span> P2</div></div>
-      <div class="arena-wrap"><canvas id="arena" class="arena" width="720" height="720" aria-label="X文字陀螺競技圓盤"></canvas><div class="overlay" id="overlay"><b>DESIGN &amp; BATTLE</b><small>設計兩顆陀螺，按下發射開始！</small></div></div>
+      <div class="versus"><div class="team-score">P1 <span class="score" id="score0">0</span></div><div class="vs">VS</div><div class="team-score right"><span class="score" id="score1">0</span> <span id="opponentScoreName">NPC</span></div></div>
+      <div class="arena-wrap"><canvas id="arena" class="arena" width="720" height="720" aria-label="X文字陀螺競技圓盤"></canvas><div class="overlay" id="overlay"><b>SOLO CHALLENGE</b><small>設計自己的陀螺，挑戰電腦對手！</small></div></div>
       <div class="bottom-hud"><span class="phase" id="phase">READY</span><span class="timer" id="timer">00:45</span><span class="phase" id="railStatus">X-RAIL ON</span></div>
       <div class="actions"><button type="button" id="launch" class="launch">⚡ 3・2・1 發射！</button><button type="button" id="reset" class="secondary">↺ 重新準備</button><button type="button" id="wipeScore" class="secondary">清除比分</button></div>
-      <div class="systemlog" id="log">左右兩側可輸入文字，或切換成畫筆自由畫出陀螺。</div>
-      <div class="desc"><strong>玩法：</strong>雙人共用一台裝置，各自設計形狀、角度與旋轉方向，按一次即可同步發射。外圍彩色區域是 <strong>X 加速軌道</strong>，陀螺碰到會自動高速衝向對手。撞擊會消耗回轉力；被撞飛出界或先停轉者落敗。<br><strong>形狀有用：</strong>尖銳外形偏攻擊、面積大的圖案較重且防禦高、平衡對稱的圖案比較能持久。這是原創 2D 物理近似玩法，並非官方戰鬥陀螺產品。</div>
+      <div class="systemlog" id="log">單人模式：左邊設計陀螺，右邊由電腦自動操作。</div>
+      <div class="desc" id="rules"><strong>玩法：</strong>單人模式由你設計陀螺、NPC 自動挑選中文、英文或幾何圖案，並依難度發射。也可切換雙人同機對戰。碰到外圍 <strong>X 加速軌道</strong>會自動高速衝刺；先停轉或飛出競技盤的一方落敗。</div>
     </section>
     <aside class="panel right" data-p="1">
-      <div class="panel-title"><span class="player-name">● 玩家 2</span><span class="player-tag">紅色戰隊</span></div>
+      <div class="panel-title"><span class="player-name" id="rightPlayerName">● NPC 對手</span><span class="player-tag" id="rightPlayerTag">電腦操控</span></div>
+      <div class="npc-config" id="npcConfig">
+        <div class="npc-caption">當前對手<strong id="npcName">隨機生成中…</strong></div>
+        <label class="npc-line" for="npcType">NPC 圖案類型
+          <select id="npcType"><option value="random">🎲 隨機混合</option><option value="zh">中文字</option><option value="en">英文字</option><option value="shape">制式幾何圖案</option></select>
+        </label>
+        <label class="npc-line" for="npcDifficulty">難度
+          <select id="npcDifficulty"><option value="easy">新手</option><option value="normal" selected>一般</option><option value="hard">高手</option></select>
+        </label>
+        <button class="npc-refresh" id="npcRefresh" type="button">↻ 換一個 NPC</button>
+        <p id="npcDescription">NPC 會根據造型計算攻擊、防禦與持久。</p>
+      </div>
       <div class="tabs"><button type="button" class="mode on" data-mode="text">輸入文字</button><button type="button" class="mode" data-mode="draw">自由手繪</button></div>
       <div class="text-slot"><label class="field-title" for="word1">你的文字（最多 4 字）</label><input id="word1" class="write-field" maxlength="8" value="雷" aria-label="玩家2文字"></div>
       <div class="editor-frame"><canvas class="editor" id="edit1" width="192" height="192" aria-label="玩家2手繪畫布"></canvas></div>
@@ -54,7 +86,7 @@
       <label class="field-title">旋轉方向</label><div class="spin-group"><button type="button" class="spin active" data-spin="1">↻ 右旋</button><button type="button" class="spin" data-spin="-1">↺ 左旋</button></div>
     </aside>
   </div>
-  <p class="meta">X 文字陀螺競技場 v1.0｜完全離線單檔版・同機雙人・手機觸控支援・圖形衍生戰鬥數值</p>
+  <p class="meta">X 文字陀螺競技場 v1.1｜單人 NPC / 同機雙人・離線單檔・手機觸控・圖形衍生能力值</p>
 </main>
 <script>
 'use strict';
@@ -63,7 +95,7 @@ const $=s=>document.querySelector(s), clamp=(v,a,b)=>Math.max(a,Math.min(b,v)), 
 const TAU=Math.PI*2, W=720, C=360, R=296, colors=['#2de1ff','#ff588e'];
 const stage=$('#arena'), ctx=stage.getContext('2d'), off=(w=192,h=192)=>{const c=document.createElement('canvas');c.width=w;c.height=h;return c;};
 const elements=[...document.querySelectorAll('.panel')];
-let sound=false,audio=null,round=0,score=[0,0];
+let sound=false,audio=null,round=0,score=[0,0],battleMode=null,npcOpponent=null,p2Human={word:'雷',mode:'text',spin:1,power:85,angle:0,draw:null};
 const players=elements.map((el,i)=>({el,i,mode:'text',word:i===0?'龍':'雷',spin:1,tool:'pen',draw:off(),history:[],drawing:false,previous:null,shape:null,historyMax:14}));
 const game={state:'ready',clock:45,count:0,tops:[],particles:[],trails:[],message:'',msgTime:0,shake:0,finish:'',last:performance.now(),frame:0};
 function tone(freq=300,duration=.10,type='triangle',volume=.12){if(!sound)return;try{audio=audio||new (window.AudioContext||window.webkitAudioContext)();if(audio.state==='suspended')audio.resume();const o=audio.createOscillator(),g=audio.createGain();o.type=type;o.frequency.setValueAtTime(freq,audio.currentTime);o.frequency.exponentialRampToValueAtTime(Math.max(50,freq*.48),audio.currentTime+duration);g.gain.setValueAtTime(volume,audio.currentTime);g.gain.exponentialRampToValueAtTime(.001,audio.currentTime+duration);o.connect(g).connect(audio.destination);o.start();o.stop(audio.currentTime+duration)}catch(_){}}
@@ -86,7 +118,13 @@ function rasterShape(p){const source=p.mode==='text'?makeTextMask(p.word):p.draw
  return {img:colored,source,attack,defense,stamina,fill,balance,rugged,mass:clamp(.85+defense/100*.75,.95,1.6),profile:outline.map(v=>Math.max(.66,v/Math.max(1,Math.max(...outline))))};
 }
 function redrawEditor(p){const g=$(`#edit${p.i}`).getContext('2d');g.clearRect(0,0,192,192);const s=p.mode==='text'?makeTextMask(p.word):p.draw;g.save();g.shadowColor=colors[p.i];g.shadowBlur=15;g.drawImage(s,0,0);g.restore();g.save();g.globalCompositeOperation='source-in';g.fillStyle=colors[p.i];g.fillRect(0,0,192,192);g.restore();}
-function updateStats(p){p.shape=rasterShape(p);let stats=p.shape;for(const [key,val] of [['Atk','attack'],['Def','defense'],['Sta','stamina']])p.el.querySelector('.stat'+key).textContent=stats?stats[val]:'--';redrawEditor(p);if(game.state==='ready')readyTops()}
+function updateStats(p){p.shape=rasterShape(p);let stats=p.shape;
+ if(stats&&p.i===1&&battleMode==='solo'&&npcOpponent){
+  const mods={attack:[12,-4,-5],defense:[-5,12,-3],stamina:[-5,-3,12],balance:[3,3,3]}[npcOpponent.role]||[0,0,0];
+  stats.attack=clamp(stats.attack+mods[0],15,98);stats.defense=clamp(stats.defense+mods[1],16,98);stats.stamina=clamp(stats.stamina+mods[2],18,98);
+  stats.mass=clamp(.85+stats.defense/100*.75,.95,1.6);
+ }
+ for(const [key,val] of [['Atk','attack'],['Def','defense'],['Sta','stamina']])p.el.querySelector('.stat'+key).textContent=stats?stats[val]:'--';redrawEditor(p);if(game.state==='ready')readyTops()}
 function setMode(p,mode){if(game.state==='countdown'||game.state==='play')return;p.mode=mode;p.el.querySelectorAll('.mode').forEach(b=>b.classList.toggle('on',b.dataset.mode===mode));p.el.querySelector('.text-slot').classList.toggle('hidden',mode!=='text');$(`#tools${p.i}`).classList.toggle('hidden',mode!=='draw');$(`#hint${p.i}`).textContent=mode==='draw'?'手指／滑鼠描繪；點 ◯ 或 ☆ 可畫完整形狀':'文字輪廓會影響陀螺性能';updateStats(p)}
 function saveHistory(p){const c=p.draw,sz=192;p.history.push(c.getContext('2d').getImageData(0,0,sz,sz));if(p.history.length>p.historyMax)p.history.shift()}
 function pointInCanvas(e,canvas){const r=canvas.getBoundingClientRect();return{x:clamp((e.clientX-r.left)*192/r.width,0,192),y:clamp((e.clientY-r.top)*192/r.height,0,192)}}
@@ -95,22 +133,92 @@ function stroke(p,a,b){const g=p.draw.getContext('2d');g.save();g.lineCap='round
 function moveDraw(p,e){if(!p.drawing)return;e.preventDefault();const q=pointInCanvas(e,e.currentTarget);stroke(p,p.previous,q);p.previous=q}
 function endDraw(p,e){if(!p.drawing)return;p.drawing=false;p.previous=null;updateStats(p)}
 function addShape(p,type){saveHistory(p);const g=p.draw.getContext('2d');g.save();g.strokeStyle='#fff';g.lineWidth=14;g.lineCap='round';g.lineJoin='round';g.beginPath();if(type==='circle'){g.arc(96,96,61,0,TAU)}else{for(let i=0;i<10;i++){const a=-Math.PI/2+i*Math.PI/5,r=i%2?30:73,x=96+Math.cos(a)*r,y=96+Math.sin(a)*r;if(!i)g.moveTo(x,y);else g.lineTo(x,y)}g.closePath()}g.stroke();g.restore();updateStats(p)}
+// NPC opponents use exactly the same rasterized shape and physics as player-designed tops.
+const npcLibrary={
+ zh:[{word:'雷霆',role:'attack'},{word:'烈焰',role:'attack'},{word:'龍',role:'balance'},{word:'虎',role:'attack'},{word:'冰盾',role:'defense'},{word:'鋼鐵',role:'defense'},{word:'疾風',role:'stamina'},{word:'旋',role:'stamina'},{word:'影',role:'balance'},{word:'爆裂',role:'attack'}],
+ en:[{word:'RUSH',role:'attack'},{word:'BOLT',role:'attack'},{word:'FIRE',role:'attack'},{word:'IRON',role:'defense'},{word:'WALL',role:'defense'},{word:'SPIN',role:'stamina'},{word:'WIND',role:'stamina'},{word:'VOID',role:'balance'},{word:'ACE',role:'balance'},{word:'X',role:'attack'}],
+ shape:[{word:'六芒星刃',pattern:'star',role:'attack'},{word:'鋸齒齒輪',pattern:'gear',role:'attack'},{word:'三角突刺',pattern:'triangle',role:'attack'},{word:'六角重盾',pattern:'hex',role:'defense'},{word:'雙環守衛',pattern:'ring',role:'defense'},{word:'旋轉渦流',pattern:'spiral',role:'stamina'},{word:'飛翼十字',pattern:'cross',role:'balance'},{word:'彗星撞擊',pattern:'comet',role:'balance'}]
+};
+const npcRoleNames={attack:'猛攻型',defense:'防禦型',stamina:'持久型',balance:'均衡型'};
+function npcPolygon(g,n,outer,inner=null,rot=-Math.PI/2){g.beginPath();const N=inner?n*2:n;for(let i=0;i<N;i++){const a=rot+i*TAU/N,rr=inner&&i%2?inner:outer,x=96+Math.cos(a)*rr,y=96+Math.sin(a)*rr;if(i===0)g.moveTo(x,y);else g.lineTo(x,y)}g.closePath()}
+function paintNpcPattern(p,pattern){
+ const g=p.draw.getContext('2d');g.clearRect(0,0,192,192);g.save();g.strokeStyle='#fff';g.fillStyle='#fff';g.lineCap='round';g.lineJoin='round';g.lineWidth=15;
+ switch(pattern){
+ case 'star':npcPolygon(g,6,76,33);g.stroke();break;
+ case 'gear':npcPolygon(g,10,77,53);g.lineWidth=14;g.stroke();break;
+ case 'triangle':npcPolygon(g,3,76);g.lineWidth=20;g.stroke();break;
+ case 'hex':npcPolygon(g,6,70);g.lineWidth=25;g.stroke();g.beginPath();g.arc(96,96,21,0,TAU);g.fill();break;
+ case 'ring':g.lineWidth=27;g.beginPath();g.arc(96,96,66,0,TAU);g.stroke();g.lineWidth=12;g.beginPath();g.arc(96,96,33,0,TAU);g.stroke();break;
+ case 'spiral':g.lineWidth=18;g.beginPath();for(let k=0;k<=120;k++){const a=k/120*TAU*2.2,r=12+57*k/120,x=96+r*Math.cos(a),y=96+r*Math.sin(a);if(!k)g.moveTo(x,y);else g.lineTo(x,y)}g.stroke();break;
+ case 'cross':g.lineWidth=24;g.beginPath();g.moveTo(96,21);g.lineTo(96,171);g.moveTo(21,96);g.lineTo(171,96);g.stroke();g.lineWidth=10;g.beginPath();g.arc(96,96,42,0,TAU);g.stroke();break;
+ case 'comet':npcPolygon(g,5,72,41);g.lineWidth=17;g.stroke();g.beginPath();g.moveTo(35,154);g.lineTo(69,128);g.moveTo(43,126);g.lineTo(63,107);g.stroke();break;
+ default:npcPolygon(g,6,65);g.stroke();
+ }
+ g.restore();
+}
+function buildNpc(){
+ if(battleMode!=='solo'||game.state==='play'||game.state==='countdown')return;
+ const p=players[1],requested=$('#npcType').value,kind=requested==='random'?['zh','en','shape'][Math.floor(rand(0,3))]:requested;
+ const options=npcLibrary[kind],chosen=options[Math.floor(rand(0,options.length))];
+ npcOpponent={...chosen,kind};p.mode=kind==='shape'?'draw':'text';p.word=chosen.word;
+ if(kind==='shape')paintNpcPattern(p,chosen.pattern);
+ const diff=$('#npcDifficulty').value,ranges={easy:[57,74],normal:[75,91],hard:[91,100]},[min,max]=ranges[diff];
+ const power=Math.floor(rand(min,max+1)),angle=Math.round(rand(-36,37)/5)*5;
+ $('#power1').value=power;$('#powerVal1').textContent=power+'%';$('#angle1').value=angle;$('#angleVal1').textContent=angle+'°';
+ p.spin=Math.random()<.5?-1:1;
+ const badge=kind==='shape'?'圖案':'字形';
+ $('#npcName').textContent=chosen.word+' · '+npcRoleNames[chosen.role];
+ $('#npcDescription').textContent=badge+'對手｜'+(p.spin===1?'右旋':'左旋')+'｜'+({easy:'新手',normal:'一般',hard:'高手'}[diff])+'難度，電腦會自行發射。';
+ $('#hint1').textContent=kind==='shape'?'制式幾何圖案也會影響實際能力值':'NPC 的中英文文字會變成旋轉陀螺';
+ updateStats(p);if(game.state==='ready')readyTops();
+}
+function setBattleMode(next,initial=false){
+ if(!initial&&battleMode===next)return;
+ if(game.state==='play'||game.state==='countdown'||game.state==='over')reset();
+ if(battleMode==='duo'&&next==='solo'){
+  const p=players[1];p2Human={word:p.word,mode:p.mode,spin:p.spin,power:Number($('#power1').value),angle:Number($('#angle1').value),draw:p.draw.getContext('2d').getImageData(0,0,192,192)};
+ }
+ battleMode=next;npcOpponent=null;score=[0,0];updateScore();
+ const solo=next==='solo',right=players[1].el;right.classList.toggle('npc-locked',solo);
+ $('#soloBtn').classList.toggle('active',solo);$('#duoBtn').classList.toggle('active',!solo);
+ $('#soloBtn').setAttribute('aria-pressed',String(solo));$('#duoBtn').setAttribute('aria-pressed',String(!solo));
+ $('#rightPlayerName').textContent=solo?'● NPC 對手':'● 玩家 2';$('#rightPlayerTag').textContent=solo?'電腦操控':'紅色戰隊';$('#opponentScoreName').textContent=solo?'NPC':'P2';
+ $('#modeHint').textContent=solo?'自己設計陀螺，挑戰隨機 NPC！':'兩個人各自設計，再一起發射！';
+ $('#rules').innerHTML=solo?'<strong>單人玩法：</strong>左邊自由輸入或手繪，右邊由 NPC 使用中文、英文或幾何圖案自動對戰。可設定對手類型與難度。外圈 <strong>X 加速軌道</strong>會觸發高速攻擊。':'<strong>雙人玩法：</strong>左右各自輸入文字或手繪，設定力量、角度與旋轉方向，再一起發射。碰到 <strong>X 加速軌道</strong>會高速攻擊。';
+ if(solo)buildNpc();else{
+  const p=players[1];p.word=p2Human.word;p.spin=p2Human.spin;$('#word1').value=p.word;
+  if(p2Human.draw)p.draw.getContext('2d').putImageData(p2Human.draw,0,0);
+  $('#power1').value=p2Human.power;$('#powerVal1').textContent=p2Human.power+'%';
+  $('#angle1').value=p2Human.angle;$('#angleVal1').textContent=p2Human.angle+'°';
+  p.el.querySelectorAll('.spin').forEach(b=>b.classList.toggle('active',Number(b.dataset.spin)===p.spin));
+  setMode(p,p2Human.mode);
+ }
+ overlay(solo?'SOLO CHALLENGE':'DESIGN & BATTLE',solo?'設計你的陀螺，挑戰電腦！':'設計兩顆陀螺，按下發射！');
+ say(solo?'單人模式已啟動，按發射挑戰 '+npcOpponent.word+'。':'雙人模式已啟動，兩位玩家都能自行設計。');
+ readyTops();
+}
 function setup(){players.forEach(p=>{const id=p.i,edit=$(`#edit${id}`);edit.addEventListener('pointerdown',e=>beginDraw(p,e));edit.addEventListener('pointermove',e=>moveDraw(p,e));edit.addEventListener('pointerup',e=>endDraw(p,e));edit.addEventListener('pointercancel',e=>endDraw(p,e));edit.addEventListener('lostpointercapture',e=>endDraw(p,e));
  p.el.querySelectorAll('.mode').forEach(b=>b.onclick=()=>setMode(p,b.dataset.mode));$(`#word${id}`).addEventListener('input',e=>{p.word=Array.from(e.target.value).slice(0,4).join('');if(game.state==='ready')updateStats(p)});
  p.el.querySelectorAll('.tool').forEach(b=>b.onclick=()=>{if(game.state==='play'||game.state==='countdown')return;const t=b.dataset.tool;if(t==='clear'){saveHistory(p);p.draw.getContext('2d').clearRect(0,0,192,192);updateStats(p)}else if(t==='undo'){let h=p.history.pop();if(h){p.draw.getContext('2d').putImageData(h,0,0);updateStats(p)}}else if(t==='circle'||t==='star')addShape(p,t);else{p.tool=t;p.el.querySelectorAll('.tool').forEach(k=>k.classList.toggle('active',k.dataset.tool===t))}});
  p.el.querySelectorAll('.spin').forEach(b=>b.onclick=()=>{if(game.state==='play'||game.state==='countdown')return;p.spin=Number(b.dataset.spin);p.el.querySelectorAll('.spin').forEach(s=>s.classList.toggle('active',s===b))});
  for(const type of ['power','angle'])$(`#${type}${id}`).addEventListener('input',e=>{$(`#${type}Val${id}`).textContent=e.target.value+(type==='power'?'%':'°')});updateStats(p)});
- $('#launch').onclick=launch;$('#reset').onclick=reset;$('#wipeScore').onclick=()=>{score=[0,0];updateScore();say('比分已清除。')};$('#muteBtn').onclick=()=>{sound=!sound;$('#muteBtn').textContent=sound?'🔊 音效開':'🔇 音效關';tone(600,.09)};updateScore();readyTops()}
+ $('#soloBtn').onclick=()=>setBattleMode('solo');$('#duoBtn').onclick=()=>setBattleMode('duo');
+ $('#npcType').onchange=()=>{if(game.state==='over')reset();buildNpc()};
+ $('#npcDifficulty').onchange=()=>{if(game.state==='over')reset();buildNpc()};
+ $('#npcRefresh').onclick=()=>{if(game.state==='over')reset();buildNpc();say('已抽出新對手：'+npcOpponent.word+'！')};
+ $('#launch').onclick=launch;$('#reset').onclick=reset;$('#wipeScore').onclick=()=>{score=[0,0];updateScore();say('比分已清除。')};$('#muteBtn').onclick=()=>{sound=!sound;$('#muteBtn').textContent=sound?'🔊 音效開':'🔇 音效關';tone(600,.09)};updateScore();setBattleMode('solo',true);readyTops()}
 function makeTop(p){const s=p.shape||rasterShape(p);if(!s)return null;return{id:p.i,shape:s,color:colors[p.i],x:C+(p.i===0?-145:145),y:C+rand(-29,29),vx:0,vy:0,spin:0,spinDir:p.spin,angle:rand(-.5,.5),r:36,m:s.mass,atk:s.attack,def:s.defense,sta:s.stamina,railCd:0,trailCd:0,ko:false,boost:0,hitCd:0,crash:0}}
 function readyTops(){if(game.state!=='ready')return;game.tops=players.map(makeTop).filter(Boolean)}
 function updateScore(){$('#score0').textContent=score[0];$('#score1').textContent=score[1]}
 function overlay(t,sub='',col='#ffffff'){const n=$('#overlay');n.classList.remove('hide');n.querySelector('b').textContent=t;n.querySelector('b').style.color=col;n.querySelector('small').textContent=sub}
 function hideOverlay(){$('#overlay').classList.add('hide')}
-function launch(){if(game.state==='play'||game.state==='countdown')return;players.forEach(updateStats);if(players.some(p=>!p.shape)){overlay('請先畫出陀螺','目前有空白的畫布','#ffd36a');say('自由手繪至少要有一筆，或切回輸入文字。');return}
+function launch(){if(game.state==='play'||game.state==='countdown')return;
+ if(game.state==='over'&&battleMode==='solo')buildNpc();
+ players.forEach(updateStats);if(players.some(p=>!p.shape)){overlay('請先畫出陀螺','目前有空白的畫布','#ffd36a');say('自由手繪至少要有一筆，或切回輸入文字。');return}
  game.tops=players.map(makeTop);game.state='countdown';game.clock=45;game.count=3.0;game.trails=[];game.particles=[];game.message='';game.msgTime=0;game.shake=0;round++;$('#launch').disabled=true;$('#phase').textContent='COUNTDOWN';overlay('3','準備發射！');say('3・2・1 ...');tone(500,.12)}
-function go(){game.state='play';game.count=0;hideOverlay();$('#phase').textContent='FIGHT!';for(const t of game.tops){const p=players[t.id];const power=Number($(`#power${t.id}`).value)/100, ang=Number($(`#angle${t.id}`).value)*Math.PI/180;const theta=t.id===0?ang:Math.PI-ang;t.vx=Math.cos(theta)*(150+260*power);t.vy=Math.sin(theta)*(150+260*power)+rand(-27,27);t.spin=68+power*45+(t.sta-55)*.20;t.trailCd=0;t.railCd=0;t.ko=false;t.hitCd=0}tone(900,.22,'sawtooth',.15);announce('SHOOT!!','#eafaff',.6)}
-function reset(){if(game.state==='countdown'||game.state==='play'){say('比賽中止，重新設計兩顆陀螺。')}else say('已重新準備，可以修改文字或圖案。');game.state='ready';game.clock=45;game.tops=[];game.trails=[];game.particles=[];game.msgTime=0;$('#launch').disabled=false;$('#launch').textContent='⚡ 3・2・1 發射！';$('#phase').textContent='READY';$('#timer').textContent='00:45';overlay('DESIGN & BATTLE','設計兩顆陀螺，按下發射開始！');players.forEach(updateStats);readyTops()}
-function finish(winner,reason){if(game.state!=='play')return;game.state='over';$('#phase').textContent='FINISH';$('#launch').disabled=false;$('#launch').textContent='⚡ 再戰一局';if(winner===-1){overlay('DRAW','平手！'+reason,'#e6f0ff');say('平手：'+reason)}else{score[winner]++;updateScore();overlay('P'+(winner+1)+' WIN!','勝利方式：'+reason,colors[winner]);say('玩家 '+(winner+1)+' 獲勝！'+reason);tone(winner===0?700:540,.32,'triangle',.16)} }
+function go(){game.state='play';game.count=0;hideOverlay();$('#phase').textContent='FIGHT!';for(const t of game.tops){const p=players[t.id];const power=Number($(`#power${t.id}`).value)/100, ang=Number($(`#angle${t.id}`).value)*Math.PI/180;const theta=t.id===0?ang:Math.PI-ang;t.vx=Math.cos(theta)*(150+260*power);t.vy=Math.sin(theta)*(150+260*power)+rand(t.id===1&&battleMode==='solo'&&$('#npcDifficulty').value==='easy'?-58:-27,t.id===1&&battleMode==='solo'&&$('#npcDifficulty').value==='easy'?58:27);t.spin=68+power*45+(t.sta-55)*.20;t.trailCd=0;t.railCd=0;t.ko=false;t.hitCd=0}tone(900,.22,'sawtooth',.15);announce('SHOOT!!','#eafaff',.6)}
+function reset(){if(game.state==='countdown'||game.state==='play'){say('比賽中止，重新設計兩顆陀螺。')}else say('已重新準備，可以修改文字或圖案。');game.state='ready';game.clock=45;game.tops=[];game.trails=[];game.particles=[];game.msgTime=0;$('#launch').disabled=false;$('#launch').textContent='⚡ 3・2・1 發射！';$('#phase').textContent='READY';$('#timer').textContent='00:45';overlay(battleMode==='solo'?'SOLO CHALLENGE':'DESIGN & BATTLE',battleMode==='solo'?'設計你的陀螺，挑戰電腦！':'設計兩顆陀螺，按下發射開始！');players.forEach(updateStats);readyTops()}
+function finish(winner,reason){if(game.state!=='play')return;game.state='over';$('#phase').textContent='FINISH';$('#launch').disabled=false;$('#launch').textContent=battleMode==='solo'?'⚡ 再戰（換 NPC）':'⚡ 再戰一局';if(winner===-1){overlay('DRAW','平手！'+reason,'#e6f0ff');say('平手：'+reason)}else{score[winner]++;updateScore();overlay(battleMode==='solo'?(winner===0?'YOU WIN!':'NPC WIN!'):'P'+(winner+1)+' WIN!','勝利方式：'+reason,colors[winner]);say((battleMode==='solo'?(winner===0?'你':'NPC '+(npcOpponent?.word||'')):'玩家 '+(winner+1))+' 獲勝！'+reason);tone(winner===0?700:540,.32,'triangle',.16)} }
 function particle(x,y,color,count=12,fast=140){for(let i=0;i<count;i++){const a=rand(0,TAU),s=rand(40,fast);game.particles.push({x,y,vx:Math.cos(a)*s,vy:Math.sin(a)*s,life:rand(.16,.5),max:.5,color,sz:rand(1.5,4)})}if(game.particles.length>180)game.particles.splice(0,game.particles.length-180)}
 function angleDiff(a,b){return Math.atan2(Math.sin(a-b),Math.cos(a-b))}
 function pocket(a){return Math.abs(angleDiff(a,-Math.PI/2))<.22||Math.abs(angleDiff(a,Math.PI/2))<.22||Math.abs(angleDiff(a,Math.PI))<.15}
